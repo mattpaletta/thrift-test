@@ -1,0 +1,38 @@
+version: '3'
+services:
+  server:
+    image: thrift-test:latest
+    container_name: "server"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9090:9090
+    tty: True # Unbuffer the stdout, so we can see it.
+    expose:
+      - 9090
+    command: python server.py
+    networks:
+      - mynetwork
+  client:
+    image: thrift-test:latest
+    container_name: "client"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python client.py
+    tty: True
+    expose:
+      - 9090
+    ports:
+      - 9090
+    links:
+      - server
+    depends_on:
+      - server
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
