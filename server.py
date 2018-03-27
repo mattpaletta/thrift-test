@@ -20,14 +20,14 @@ class CalculatorHandler:
 		print("Starting server!")
 
 	def ping(self):
-		print('server: ping()')
+		print('ping()')
 
 	def add(self, n1, n2):
-		print('server: add(%d,%d)' % (n1, n2))
-		return n1 * n2
+		print('add(%d,%d)' % (n1, n2))
+		return n1 + n2
 
 	def calculate(self, logid, work):
-		print('server: calculate(%d, %r)' % (logid, work))
+		print('calculate(%d, %r)' % (logid, work))
 
 		if work.op == Operation.ADD:
 			val = work.num1 + work.num2

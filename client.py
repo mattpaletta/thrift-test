@@ -1,14 +1,10 @@
 import sys
-import glob
 sys.path.append('gen-py')
-#sys.path.insert(0, glob.glob('../../lib/py/build/lib*')[0])
-
 
 
 from tutorial import Calculator
 from tutorial.ttypes import InvalidOperation, Operation, Work
 
-from thrift import Thrift
 from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
@@ -33,10 +29,10 @@ def main():
     print("Client connected to server: " + str(transport.isOpen()))
 
     client.ping()
-    print('client: ping()')
+    print('ping()')
 
     sum_ = client.add(1, 1)
-    print('client: 1+1=%d' % sum_)
+    print('1+1=%d' % sum_)
 
     work = Work()
 
